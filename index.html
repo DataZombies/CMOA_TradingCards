@@ -20,19 +20,22 @@
 var deck;
 var data = [
 	{
-		img: '../imgs/img1.jpg',
-		title: 'Card 1',
-		text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+  	id: '77dba770-245f-491c-a520-17874313bf43',
+		img: 'http://www.cmoa.org/CollectionImage.aspx?irn=131089&size=Medium',
+		title: 'Taylor Price',
+		text: 'Zoe Strauss.'
 	},
 	{
-		img: '../imgs/img2.jpg',
-		title: 'Card 2',
+  	id: 'b2f6c695-05bc-4cc1-8191-e187e9f9ed49',
+		img: 'http://www.cmoa.org/CollectionImage.aspx?irn=131097&size=Medium',
+		title: 'Nicy Simmons',
 		text: 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
 	},
 	{
-		img: '../imgs/img3.jpg',
-		title: 'Card 3',
-		text: 'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.'
+  	id: 'ed5cb4b3-f9e5-43a5-99a3-a25001f3e0cb',
+		img: 'http://www.cmoa.org/CollectionImage.aspx?irn=6135&size=Medium',
+		title: 'Bowl',
+		text: 'William B. Kerr and Company'
 	},
 	{
 		img: '../imgs/img4.jpg',
@@ -55,6 +58,7 @@ function loaded () {
 			el.querySelector('p').innerHTML = data.text;
 		}
 	});
+
 }
 
 document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
@@ -81,7 +85,8 @@ body, ul, li, h1, h2, h3, img, p {
 body {
 	/* On modern browsers, prevent the whole page to bounce */
 	overflow: hidden;
-	background-color: #aaa;
+	background-color: #007c0b/*#ccc*/;
+/*#00d842*/;
 	font-size: 12px;
 }
 
@@ -89,11 +94,11 @@ body {
 	position: absolute;
 	z-index: 1;
 	width: 100%;
-	max-width: 568px;
+	max-width: 400px; /*568px;*/
 	height: 100%;
-	max-height: 568px;
-	top: 0;
-	left: 0;
+	max-height: 500px; /*568px;*/
+	top: 100px; /*0;*/
+	left: 50px; /*0;*/
 	bottom: 0;
 	right: 0;
 	overflow: hidden;
@@ -125,7 +130,7 @@ body {
 	width: 100%;
 	height: 100%;
 
-	background: #ccc;
+	background: #007c0b/*#ccc*/;
 }
 
 .card {
@@ -169,34 +174,46 @@ body {
 	margin-bottom: 10px;
 	text-align: center;
 }
+
+.player {
+  width: 50%;
+}
+
+.playerHeader {
+  align-content: center;
+  width: 100%;
+}
 </style>
 
 </head>
 <!-- !Body -->
 <body onload="loaded()">
-
+<div id="player">
+  <h1 id="playerHeader">Player 1</h1>
 <div id="wrapper">
 	<ul id="deck">
 		<li class="card"><div>
 			<h3>Title</h3>
-			<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVQI12P4//8/AAX+Av7czFnn
-AAAAAElFTkSuQmCC" alt="thumb" width="125" height="125">
+			<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVQI12P4//8/AAX+Av7czFnnAAAAAElFTkSuQmCC" alt="thumb" width="125" height="125">
 			<p>Text</p>
 		</div></li>
 		<li class="card"><div>
 			<h3>Title</h3>
-			<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVQI12P4//8/AAX+Av7czFnn
-AAAAAElFTkSuQmCC" alt="thumb" width="125" height="125">
+			<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVQI12P4//8/AAX+Av7czFnnAAAAAElFTkSuQmCC" alt="thumb" width="125" height="125">
 			<p>Text</p>
 		</div></li>
 		<li class="card"><div>
 			<h3>Title</h3>
-			<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVQI12P4//8/AAX+Av7czFnn
-AAAAAElFTkSuQmCC" alt="thumb" width="125" height="125">
+			<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVQI12P4//8/AAX+Av7czFnnAAAAAElFTkSuQmCC" alt="thumb" width="125" height="125">
 			<p>Text</p>
 		</div></li>
 	</ul>
 </div>
+</div>
+<script>
 
+
+
+</script>
 </body>
 </html>
