@@ -190,6 +190,9 @@ body {
 	height: 100%;
 	text-align: center;
 }
+#scroller ul div {
+  margin: 7px 0 0 0;
+}
 
 #scroller li {
   vertical-align: middle;
@@ -203,6 +206,7 @@ body {
 }
 
 #scroller li:first-child {
+	border-left: 1px solid #ccc;
 }
 
 #scroller li:last-child {

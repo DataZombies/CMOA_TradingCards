@@ -35,6 +35,7 @@
           el.querySelector('p').innerHTML = data.text;
         }
       });
+
       myScroll = new IScroll('#categories', {
         fadeScrollbars: true,
         interactiveScrollbars: true,
@@ -45,9 +46,18 @@
         scrollX: true,
         scrollY: false
       });
+
+      var categories = document.getElementsByClassName('category');
+      for (var i = 0, j = categories.length; i < j; i++) {
+        categories[i].addEventListener('tap', function() {
+          alert(this.id);
+        }, false);
+      }
+
     }
 
     document.addEventListener('touchmove', function(e) {e.preventDefault();}, false);
+
   </script>
   <link rel="stylesheet" href="css/styles.css">
 </head>
@@ -62,16 +72,16 @@
     <div id="categories">
       <div id="scroller">
         <ul>
-          <li>Category 1</li>
-          <li>Category 2</li>
-          <li>Category 3</li>
-          <li>Category 4</li>
-          <li>Category 5</li>
-          <li>Category 6</li>
-          <li>Category 7</li>
-          <li>Category 8</li>
-          <li>Category 9</li>
-          <li>Category 10</li>
+          <li><div class="category" id="1">Category 1</div></li>
+          <li><div class="category" id="2">Category 2</div></li>
+          <li><div class="category" id="3">Category 3</div></li>
+          <li><div class="category" id="4">Category 4</div></li>
+          <li><div class="category" id="5">Category 5</div></li>
+          <li><div class="category" id="6">Category 6</div></li>
+          <li><div class="category" id="7">Category 7</div></li>
+          <li><div class="category" id="8">Category 8</div></li>
+          <li><div class="category" id="9">Category 9</div></li>
+          <li><div class="category" id="10">Category 10</div></li>
         </ul>
       </div>
     </div>

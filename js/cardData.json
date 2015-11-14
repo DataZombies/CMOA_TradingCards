@@ -28,5 +28,11 @@ var data = [
     img: 'http://www.cmoa.org/CollectionImage.aspx?irn=99150&size=Medium',
     title: 'Tsuchiyama',
     text: 'Hiroshige Andō'
+  },
+  {
+    id: '666',
+    img: 'https://upload.wikimedia.org/wikipedia/commons/8/8d/Cthulhu_sketch_by_Lovecraft.jpg',
+    title: 'High Priest of the Great Old Ones',
+    text: 'H. P. Lovecraft'
   }
 ];
