@@ -2,7 +2,7 @@
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
-	font-family: san-fransico;
+	font-family: sans-serif;
 }
 
 body, html {
@@ -112,6 +112,12 @@ body {
   width: 50%;
 }
 
+#player .header {
+  position: absolute;
+  left: 55px;
+  top: 10px;
+}
+
 #player h1 {
   color: white;
 }
@@ -134,18 +140,21 @@ body {
   height: 30px;
   align-content: center;
 	width: 380px;
+	border-radius: 10px;
 }
 
 #categories {
 	position: absolute;
 	z-index: 1;
-	top: 70px;
+	top: 65px;
 /* 	bottom: 48px; */
 	left: 60px;
 	width: 380px;
-  height: 30px;
-	background: #ccc;
+  height: 35px;
+	background-color: white;
 	overflow: hidden;
+	border: 2px solid #aaa;
+	border-radius: 10px;
 }
 
 #scroller {
@@ -154,7 +163,7 @@ body {
 	-webkit-tap-highlight-color: rgba(0,0,0,0);
 	width: 500px;
 	height: 100px;
-	background-color: #a00;
+	background-color: white;
 	-webkit-transform: translateZ(0);
 	-moz-transform: translateZ(0);
 	-ms-transform: translateZ(0);
@@ -182,6 +191,7 @@ body {
 }
 
 #scroller li {
+  vertical-align: middle;
 	display: block;
 	float: left;
 	width: 100px;
@@ -189,4 +199,12 @@ body {
 	border-right: 1px solid #ccc;
 	background-color: #fafafa;
 	font-size: 14px;
+}
+
+#scroller li:first-child {
+  color: red;
+}
+
+#scroller li:last-child {
+  color: red;
 }
