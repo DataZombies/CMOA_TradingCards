@@ -2,6 +2,7 @@
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
+	font-family: san-fransico;
 }
 
 body, html {
@@ -62,7 +63,6 @@ body {
 	z-index: 10;
 	width: 100%;
 	height: 100%;
-
 	background: #007c0b/*#ccc*/;
 }
 
@@ -112,18 +112,37 @@ body {
   width: 50%;
 }
 
+#player h1 {
+  color: white;
+}
+
+#player h2 {
+  color: white;
+}
+
 #playerHeader {
   align-content: center;
   width: 100%;
 }
 
+#player #useThisCard {
+  font-weight: bold;
+  font-size: x-large;
+  position: absolute;
+	left: 60px;
+  top: 600px;
+  height: 30px;
+  align-content: center;
+	width: 380px;
+}
+
 #categories {
 	position: absolute;
 	z-index: 1;
-	top: 50px;
+	top: 70px;
 /* 	bottom: 48px; */
-	left: 50px;
-	width: 400px;
+	left: 60px;
+	width: 380px;
   height: 30px;
 	background: #ccc;
 	overflow: hidden;
