@@ -1,0 +1,5 @@
+/*
+ * MODELS
+ */
+
+window.MODELS = {};
