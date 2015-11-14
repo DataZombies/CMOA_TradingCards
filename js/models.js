@@ -2,12 +2,13 @@
  * MODELS & DATA
  */
 
-var app = (function() {
-  var DB = {
+var REPO = (function() {
+  var models = {};
+  var db = {
     cards: []
   };
 
-  function Artist(data) {
+  models.Artist = function(data) {
     this.id = data["artist_id"];
     this.fullName = data["full_name"];
     this.nationality = data["nationality"];
@@ -18,7 +19,7 @@ var app = (function() {
     this.works = [];
   }
 
-  function Work(data) {
+   models.Work = function(data) {
     this.id = data["id"];
     this.title = data["title"];
     this.dateCreated = data["creation_date_earliest"];
@@ -35,26 +36,27 @@ var app = (function() {
   DATA["things"].forEach(function(t) {
     if(!t["creator"]) return;
 
-    var work = new Work(t);
+    var work = new models.Work(t);
 
     t["creator"].forEach(function(c) {
-      if(DB.cards.some(function(a) { return a.id === c["artist_id"] })) return;
+      if(db.cards.some(function(a) { return a.id === c["artist_id"] })) return;
 
-      var a = new Artist(c);
+      var a = new models.Artist(c);
       a.works.push(work);
-      DB.cards.push(a);
+      db.cards.push(a);
     });
   });
 
   // Draw a sample of cards from the deck
   function drawCards(n) {
     var nc = n || 5;
-    return _.sample(DB.cards, nc);
+    return _.sample(db.cards, nc);
   }
 
   return {
+    models: models,
     drawCards: drawCards
   };
 })();
 
-console.log(app.drawCards(5))
+console.log(REPO.drawCards(5))
