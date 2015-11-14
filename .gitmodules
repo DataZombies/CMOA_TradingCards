@@ -1,3 +1,6 @@
 [submodule "cardview"]
 	path = cardview
 	url = https://github.com/cubiq/cardview
+[submodule "iscroll"]
+	path = iscroll
+	url = https://github.com/cubiq/iscroll
