@@ -3,212 +3,102 @@
 <!--[if IE 7 ]>    <html lang="en" class="no-js ie7"> <![endif]-->
 <!--[if IE 8 ]>    <html lang="en" class="no-js ie8"> <![endif]-->
 <!--[if IE 9 ]>    <html lang="en" class="no-js ie9"> <![endif]-->
-<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!-->
+<html lang="en" class="no-js">
+<!--<![endif]-->
+
 <head>
-	<title></title>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
-	<!--[if IE]><![endif]-->
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<meta name="description" content="">
-	<meta name="keywords" content="" />
-	<meta name="author" content="">
-	<meta name="viewport" content="width=device-width; initial-scale=1.0">
-	<script src="cardview/src/cardview.js"></script>
-<script type="text/javascript">
+  <title>Carnegie Museum of Art Cards</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+  <!--[if IE]><![endif]-->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="description" content="">
+  <meta name="keywords" content="" />
+  <meta name="author" content="">
+  <meta name="viewport" content="width=device-width; initial-scale=1.0">
 
-var deck;
-var data = [
-	{
-  	id: '77dba770-245f-491c-a520-17874313bf43',
-		img: 'http://www.cmoa.org/CollectionImage.aspx?irn=131089&size=Medium',
-		title: 'Taylor Price',
-		text: 'Zoe Strauss.'
-	},
-	{
-  	id: 'b2f6c695-05bc-4cc1-8191-e187e9f9ed49',
-		img: 'http://www.cmoa.org/CollectionImage.aspx?irn=131097&size=Medium',
-		title: 'Nicy Simmons',
-		text: 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
-	},
-	{
-  	id: 'ed5cb4b3-f9e5-43a5-99a3-a25001f3e0cb',
-		img: 'http://www.cmoa.org/CollectionImage.aspx?irn=6135&size=Medium',
-		title: 'Bowl',
-		text: 'William B. Kerr and Company'
-	},
-	{
-		img: '../imgs/img4.jpg',
-		title: 'Card 4',
-		text: 'Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
-	},
-	{
-		img: '../imgs/img5.jpg',
-		title: 'Card 5',
-		text: 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.'
-	}
-];
+  <script src="js/cardData.js"></script>
+  <script src="cardview/src/cardview.js"></script>
+  <script src="iscroll/build/iscroll.js"></script>
 
-function loaded () {
-	deck = new CardView('#wrapper', {
-		dataset: data,
-		onUpdateContent: function (el, data) {
-			el.querySelector('img').src = data.img;
-			el.querySelector('h3').innerHTML = data.title;
-			el.querySelector('p').innerHTML = data.text;
-		}
-	});
+  <script type="text/javascript">
+    var deck;
+    var myScroll;
 
-}
+    function loaded() {
+      deck = new CardView('#wrapper', {
+        dataset: data,
+        onUpdateContent: function(el, data) {
+          el.querySelector('img').src = data.img;
+          el.querySelector('h3').innerHTML = data.title;
+          el.querySelector('p').innerHTML = data.text;
+        }
+      });
+      myScroll = new IScroll('#categories', {
+        fadeScrollbars: true,
+        interactiveScrollbars: true,
+        mouseWheel: true,
+        scrollbars: true,
+        shrinkScrollbars: 'scale',
+        tap: true,
+        scrollX: true,
+        scrollY: false
+      });
+    }
 
-document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
-
-</script>
-<style>
-* {
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	box-sizing: border-box;
-}
-
-body, html {
-	height: 100%;
-}
-
-body, ul, li, h1, h2, h3, img, p {
-	padding: 0;
-	margin: 0;
-	border: 0;
-	list-style: none;
-}
-
-body {
-	/* On modern browsers, prevent the whole page to bounce */
-	overflow: hidden;
-	background-color: #007c0b/*#ccc*/;
-/*#00d842*/;
-	font-size: 12px;
-}
-
-#wrapper {
-	position: absolute;
-	z-index: 1;
-	width: 100%;
-	max-width: 400px; /*568px;*/
-	height: 100%;
-	max-height: 500px; /*568px;*/
-	top: 100px; /*0;*/
-	left: 50px; /*0;*/
-	bottom: 0;
-	right: 0;
-	overflow: hidden;
-
-	/* Prevent native touch events on Windows */
-	-ms-touch-action: none;
-
-	/* Prevent the callout on tap-hold and text selection */
-	-webkit-touch-callout: none;
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
-
-	/* Prevent elements to be highlighted on tap */
-	-webkit-tap-highlight-color: rgba(0,0,0,0);
-
-	/* Prevent text resize on orientation change, useful for web-apps */
-	-webkit-text-size-adjust: none;
-	-moz-text-size-adjust: none;
-	-ms-text-size-adjust: none;
-	-o-text-size-adjust: none;
-	text-size-adjust: none;
-}
-
-#deck {
-	position: relative;
-	z-index: 10;
-	width: 100%;
-	height: 100%;
-
-	background: #007c0b/*#ccc*/;
-}
-
-.card {
-	position: absolute;
-	width: 100%;
-	height: 100%;
-	padding: 10px;
-	z-index: 10;
-
-	/* Put the scroller into the HW Compositing layer right from the start */
-	-webkit-transform: translateZ(0);
-	-moz-transform: translateZ(0);
-	-ms-transform: translateZ(0);
-	-o-transform: translateZ(0);
-	transform: translateZ(0);
-}
-
-.card div {
-	position: relative;
-	width: 100%;
-	height: 100%;
-	border: 2px solid #aaa;
-	padding: 20px;
-	border-radius: 10px;
-	background: #fff;
-	background-position: 50% 50%;
-	background-size: 95% 95%;
-	background-repeat: no-repeat;
-	font-size: 1.6em;
-}
-
-.card img {
-	float: left;
-	margin: 0 10px 10px 0;
-	border: 1px solid #000;
-}
-
-.card h3 {
-	background-color: #aaa;
-	padding: 8px;
-	margin-bottom: 10px;
-	text-align: center;
-}
-
-.player {
-  width: 50%;
-}
-
-.playerHeader {
-  align-content: center;
-  width: 100%;
-}
-</style>
-
+    document.addEventListener('touchmove', function(e) {e.preventDefault();}, false);
+  </script>
+  <link rel="stylesheet" href="css/styles.css">
 </head>
 <!-- !Body -->
+
 <body onload="loaded()">
-<div id="player">
-  <h1 id="playerHeader">Player 1</h1>
-<div id="wrapper">
-	<ul id="deck">
-		<li class="card"><div>
-			<h3>Title</h3>
-			<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVQI12P4//8/AAX+Av7czFnnAAAAAElFTkSuQmCC" alt="thumb" width="125" height="125">
-			<p>Text</p>
-		</div></li>
-		<li class="card"><div>
-			<h3>Title</h3>
-			<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVQI12P4//8/AAX+Av7czFnnAAAAAElFTkSuQmCC" alt="thumb" width="125" height="125">
-			<p>Text</p>
-		</div></li>
-		<li class="card"><div>
-			<h3>Title</h3>
-			<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVQI12P4//8/AAX+Av7czFnnAAAAAElFTkSuQmCC" alt="thumb" width="125" height="125">
-			<p>Text</p>
-		</div></li>
-	</ul>
-</div>
-</div>
+  <div id="player">
+    <h1 id="playerHeader">Player 1</h1>
+    <h2 class="score">Score: <span>-10</span></h2>
+    <div id="categories">
+      <div id="scroller">
+        <ul>
+          <li>Category 1</li>
+          <li>Category 2</li>
+          <li>Category 3</li>
+          <li>Category 4</li>
+          <li>Category 5</li>
+          <li>Category 6</li>
+          <li>Category 7</li>
+          <li>Category 8</li>
+          <li>Category 9</li>
+          <li>Category 10</li>
+        </ul>
+      </div>
+    </div>
+    <div id="wrapper">
+      <ul id="deck">
+        <li class="card">
+          <div>
+            <h3>Title</h3>
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVQI12P4//8/AAX+Av7czFnnAAAAAElFTkSuQmCC" alt="thumb" width="125" height="125">
+            <p>Text</p>
+          </div>
+        </li>
+        <li class="card">
+          <div>
+            <h3>Title</h3>
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVQI12P4//8/AAX+Av7czFnnAAAAAElFTkSuQmCC" alt="thumb" width="125" height="125">
+            <p>Text</p>
+          </div>
+        </li>
+        <li class="card">
+          <div>
+            <h3>Title</h3>
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVQI12P4//8/AAX+Av7czFnnAAAAAElFTkSuQmCC" alt="thumb" width="125" height="125">
+            <p>Text</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
 </body>
+
 </html>

@@ -1,0 +1,173 @@
+* {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+body, html {
+	height: 100%;
+}
+
+body, ul, li, h1, h2, h3, img, p {
+	padding: 0;
+	margin: 0;
+	border: 0;
+	list-style: none;
+}
+
+body {
+	/* On modern browsers, prevent the whole page to bounce */
+	overflow: hidden;
+	background-color: #007c0b/*#ccc*/;
+/*#00d842*/;
+	font-size: 12px;
+}
+
+#wrapper {
+	position: absolute;
+	z-index: 1;
+	width: 100%;
+	max-width: 400px; /*568px;*/
+	height: 100%;
+	max-height: 500px; /*568px;*/
+	top: 100px; /*0;*/
+	left: 50px; /*0;*/
+	bottom: 0;
+	right: 0;
+	overflow: hidden;
+
+	/* Prevent native touch events on Windows */
+	-ms-touch-action: none;
+
+	/* Prevent the callout on tap-hold and text selection */
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+
+	/* Prevent elements to be highlighted on tap */
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+
+	/* Prevent text resize on orientation change, useful for web-apps */
+	-webkit-text-size-adjust: none;
+	-moz-text-size-adjust: none;
+	-ms-text-size-adjust: none;
+	-o-text-size-adjust: none;
+	text-size-adjust: none;
+}
+
+#deck {
+	position: relative;
+	z-index: 10;
+	width: 100%;
+	height: 100%;
+
+	background: #007c0b/*#ccc*/;
+}
+
+.card {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	padding: 10px;
+	z-index: 10;
+
+	/* Put the scroller into the HW Compositing layer right from the start */
+	-webkit-transform: translateZ(0);
+	-moz-transform: translateZ(0);
+	-ms-transform: translateZ(0);
+	-o-transform: translateZ(0);
+	transform: translateZ(0);
+}
+
+.card div {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	border: 2px solid #aaa;
+	padding: 20px;
+	border-radius: 10px;
+	background: #fff;
+	background-position: 50% 50%;
+	background-size: 95% 95%;
+	background-repeat: no-repeat;
+	font-size: 1.6em;
+}
+
+.card img {
+	float: left;
+	margin: 0 10px 10px 0;
+	border: 1px solid #000;
+}
+
+.card h3 {
+	background-color: #aaa;
+	padding: 8px;
+	margin-bottom: 10px;
+	text-align: center;
+}
+
+#player {
+  width: 50%;
+}
+
+#playerHeader {
+  align-content: center;
+  width: 100%;
+}
+
+#categories {
+	position: absolute;
+	z-index: 1;
+	top: 50px;
+/* 	bottom: 48px; */
+	left: 50px;
+	width: 400px;
+  height: 30px;
+	background: #ccc;
+	overflow: hidden;
+}
+
+#scroller {
+	position: absolute;
+	z-index: 1;
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+	width: 500px;
+	height: 100px;
+	background-color: #a00;
+	-webkit-transform: translateZ(0);
+	-moz-transform: translateZ(0);
+	-ms-transform: translateZ(0);
+	-o-transform: translateZ(0);
+	transform: translateZ(0);
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	-webkit-text-size-adjust: none;
+	-moz-text-size-adjust: none;
+	-ms-text-size-adjust: none;
+	-o-text-size-adjust: none;
+	text-size-adjust: none;
+}
+
+#scroller ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+}
+
+#scroller li {
+	display: block;
+	float: left;
+	width: 100px;
+	height: 100%;
+	border-right: 1px solid #ccc;
+	background-color: #fafafa;
+	font-size: 14px;
+}
