@@ -1,0 +1,3 @@
+[submodule "cardview"]
+	path = cardview
+	url = https://github.com/cubiq/cardview
