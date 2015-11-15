@@ -221,6 +221,7 @@ body {
 .artist-work__info table {
   border-spacing: 0;
   font-size: 1.6rem;
+  table-layout: fixed;
   width: 100%;
 }
 
@@ -228,6 +229,10 @@ body {
   border-bottom: 3px solid #374140;
   border-right: 3px solid #374140;
   padding: 5px;
+}
+
+.artist-work__info tr td:first-child {
+  width: 100px;
 }
 
 .artist-work__info tr td:last-child {

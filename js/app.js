@@ -238,6 +238,7 @@ var APP = (function() {
           addToLedger({
             content: 'The computer played an artwork (' + cWork.title + ') and ' +
                      'healed itself by ' + cWork.castMagnitude + ' HP!'
+          });
         }
       }
 
