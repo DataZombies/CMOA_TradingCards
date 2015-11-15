@@ -17,105 +17,114 @@
   <meta name="keywords" content="" />
   <meta name="author" content="">
   <meta name="viewport" content="width=device-width; initial-scale=1.0">
-
-  <script src="js/cardData.json"></script>
-  <script src="cardview/src/cardview.js"></script>
-  <script src="iscroll/build/iscroll.js"></script>
-
-  <script type="text/javascript">
-    var deck;
-    var myScroll;
-
-    function loaded() {
-      deck = new CardView('#wrapper', {
-        dataset: data,
-        onUpdateContent: function(el, data) {
-          el.querySelector('img').src = data.img;
-          el.querySelector('h3').innerHTML = data.title;
-          el.querySelector('p').innerHTML = data.text;
-        }
-      });
-
-      myScroll = new IScroll('#categories', {
-        fadeScrollbars: true,
-        interactiveScrollbars: true,
-        mouseWheel: true,
-        scrollbars: true,
-        shrinkScrollbars: 'scale',
-        tap: true,
-        scrollX: true,
-        scrollY: false
-      });
-
-      var categories = document.getElementsByClassName('category');
-      for (var i = 0, j = categories.length; i < j; i++) {
-        categories[i].addEventListener('tap', function() {
-          alert(this.id);
-        }, false);
-      }
-
-    }
-
-    document.addEventListener('touchmove', function(e) {e.preventDefault();}, false);
-
-  </script>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700,300italic' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="css/styles.css">
 </head>
-<!-- !Body -->
+<body>
+  <div class="container">
+    <header class="main-header">
+      <span class="main-header__name">The War of Art</span>
+      <span class="main-header__quote">
+        "Thus the expert in battle moves the enemy, and is not moved by him."
+        - <span>Sun Tzu, <em>The Art of War</em></span>
+      </span>
+    </header>
+    <div class="main-content">
+      <div class="player-area">
+        <h2>
+          You
+          <span class="player-area__score">
+            Score:
+            <span data-bind="text: playerScore"></span>
+          </span>
+        </h2>
+        <div class="deck-wrapper" id="player-deck">
+          <ul id="deck">
+            <li class="card">
+              <div>
+                <h3>Title</h3>
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVQI12P4//8/AAX+Av7czFnnAAAAAElFTkSuQmCC" alt="thumb" width="125" height="125">
+                <p>Text</p>
+              </div>
+            </li>
+            <li class="card">
+              <div>
+                <h3>Title</h3>
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVQI12P4//8/AAX+Av7czFnnAAAAAElFTkSuQmCC" alt="thumb" width="125" height="125">
+                <p>Text</p>
+              </div>
+            </li>
+            <li class="card">
+              <div>
+                <h3>Title</h3>
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVQI12P4//8/AAX+Av7czFnnAAAAAElFTkSuQmCC" alt="thumb" width="125" height="125">
+                <p>Text</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <a class="player-area__btn" href="javascript:void(0)">Choose Card</a>
+      </div>
+      <div class="shared-area">
+        <h2>Something</h2>
+      </div>
+      <div class="player-area">
 
-<body onload="loaded()">
-  <div id="player">
-    <div class="header">
-      <h1>Player 1</h1>
-      <h2>Score: <span>-10</span></h2>
-    </div>
-    <div id="categories">
-      <div id="scroller">
-        <ul>
-          <li><div class="category" id="1">Category 1</div></li>
-          <li><div class="category" id="2">Category 2</div></li>
-          <li><div class="category" id="3">Category 3</div></li>
-          <li><div class="category" id="4">Category 4</div></li>
-          <li><div class="category" id="5">Category 5</div></li>
-          <li><div class="category" id="6">Category 6</div></li>
-          <li><div class="category" id="7">Category 7</div></li>
-          <li><div class="category" id="8">Category 8</div></li>
-          <li><div class="category" id="9">Category 9</div></li>
-          <li><div class="category" id="10">Category 10</div></li>
-        </ul>
       </div>
     </div>
-    <div id="wrapper">
-      <ul id="deck">
-        <li class="card">
-          <div>
-            <h3>Title</h3>
-            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVQI12P4//8/AAX+Av7czFnnAAAAAElFTkSuQmCC" alt="thumb" width="125" height="125">
-            <p>Text</p>
-          </div>
-        </li>
-        <li class="card">
-          <div>
-            <h3>Title</h3>
-            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVQI12P4//8/AAX+Av7czFnnAAAAAElFTkSuQmCC" alt="thumb" width="125" height="125">
-            <p>Text</p>
-          </div>
-        </li>
-        <li class="card">
-          <div>
-            <h3>Title</h3>
-            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVQI12P4//8/AAX+Av7czFnnAAAAAElFTkSuQmCC" alt="thumb" width="125" height="125">
-            <p>Text</p>
-          </div>
-        </li>
-      </ul>
-    </div>
-    <div>
-      <button id="useThisCard">Use this card</button>
-      </div>
-  </div>
+    <!--<div class="header">-->
+      <!--<h1>Player 1</h1>-->
+      <!--<h2>Score: <span>-10</span></h2>-->
+    <!--</div>-->
+    <!--<div id="categories">-->
+      <!--<div id="scroller">-->
+        <!--<ul>-->
+          <!--<li><div class="category" id="1">Category 1</div></li>-->
+          <!--<li><div class="category" id="2">Category 2</div></li>-->
+          <!--<li><div class="category" id="3">Category 3</div></li>-->
+          <!--<li><div class="category" id="4">Category 4</div></li>-->
+          <!--<li><div class="category" id="5">Category 5</div></li>-->
+          <!--<li><div class="category" id="6">Category 6</div></li>-->
+          <!--<li><div class="category" id="7">Category 7</div></li>-->
+          <!--<li><div class="category" id="8">Category 8</div></li>-->
+          <!--<li><div class="category" id="9">Category 9</div></li>-->
+          <!--<li><div class="category" id="10">Category 10</div></li>-->
+        <!--</ul>-->
+      <!--</div>-->
+    <!--</div>-->
+    <!--<div class="wrapper">-->
+      <!--<ul id="deck">-->
+        <!--<li class="card">-->
+          <!--<div>-->
+            <!--<h3>Title</h3>-->
+            <!--<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVQI12P4//8/AAX+Av7czFnnAAAAAElFTkSuQmCC" alt="thumb" width="125" height="125">-->
+            <!--<p>Text</p>-->
+          <!--</div>-->
+        <!--</li>-->
+        <!--<li class="card">-->
+          <!--<div>-->
+            <!--<h3>Title</h3>-->
+            <!--<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVQI12P4//8/AAX+Av7czFnnAAAAAElFTkSuQmCC" alt="thumb" width="125" height="125">-->
+            <!--<p>Text</p>-->
+          <!--</div>-->
+        <!--</li>-->
+        <!--<li class="card">-->
+          <!--<div>-->
+            <!--<h3>Title</h3>-->
+            <!--<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVQI12P4//8/AAX+Av7czFnnAAAAAElFTkSuQmCC" alt="thumb" width="125" height="125">-->
+            <!--<p>Text</p>-->
+          <!--</div>-->
+        <!--</li>-->
+      <!--</ul>-->
+    <!--</div>-->
+    <!--<div>-->
+      <!--<button id="useThisCard">Use this card</button>-->
+      <!--</div>-->
+  <!--</div>-->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.3.0/knockout-min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+  <script src="/js/iscroll.js"></script>
+  <script src="/js/cardview.js"></script>
   <script src="/js/data.js"></script>
   <script src="/js/models.js"></script>
   <script src="/js/app.js"></script>

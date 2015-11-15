@@ -8,29 +8,57 @@ var REPO = (function() {
     cards: []
   };
 
-  models.Artist = function(data) {
-    this.id = data["artist_id"];
-    this.fullName = data["full_name"];
-    this.nationality = data["nationality"];
-    this.birthDate = data["birth_date"];
-    this.birthPlace = data["birth_place"];
-    this.deathDate = data["death_date"];
-    this.deathPlace = data["death_place"];
-    this.works = [];
+  function prettyDate(date) {
+    var monthNames = [
+      "January", "February", "March",
+      "April", "May", "June", "July",
+      "August", "September", "October",
+      "November", "December"
+    ];
+
+    var day = date.getDate();
+    var monthIndex = date.getMonth();
+    var year = date.getFullYear();
+
+    return monthNames[monthIndex] + ' ' + day + ', ' + year;
   }
 
-   models.Work = function(data) {
-    this.id = data["id"];
-    this.title = data["title"];
-    this.dateCreated = data["creation_date_earliest"];
-    this.dateAcquired = data["date_acquired"];
-    this.medium = data["medium"];
-    this.creditLine = data["credit_line"];
-    this.itemWidth = data["item_width"];
-    this.itemHeight = data["item_height"];
-    this.itemDepth = data["item_depth"];
-    this.itemHeight = data["item_height"];
-  }
+  models.Artist = function(a, w) {
+    this.id = a["artist_id"];
+    this.fullName = a["full_name"];
+    this.nationality = a["nationality"];
+    this.birthDate = prettyDate(new Date(a["birth_date"]));
+    this.birthPlace = a["birth_place"] || '(N/A)';
+    this.deathDate = a["death_date"] && prettyDate(new Date(a["death_date"]));
+    this.deathPlace = a["death_place"] || '(N/A)';
+    this.imageUrl = w.imageUrl;
+    this.works = [];
+
+    this.description = this.nationality + ' artist; born in ' +
+      this.birthPlace + ' on ' + this.birthDate;
+
+    if(this.deathDate) {
+      this.description += '; died in ' + this.deathPlace + ' on ' +
+        this.deathDate;
+    }
+  };
+
+   models.Work = function(w) {
+    this.id = w["id"];
+    this.title = w["title"];
+    this.dateCreated = w["creation_date_earliest"];
+    this.dateAcquired = w["date_acquired"];
+    this.medium = w["medium"];
+    this.creditLine = w["credit_line"];
+    this.itemWidth = w["item_width"];
+    this.itemHeight = w["item_height"];
+    this.itemDepth = w["item_depth"];
+    this.itemHeight = w["item_height"];
+
+    var images = w["images"] && w["images"][0];
+    this.imageUrl = images && images["image_url"] && images["image_url"][0];
+    this.imageUrl = this.imageUrl || "/img/default.jpg";
+  };
 
   // Seed DB with data
   DATA["things"].forEach(function(t) {
@@ -41,7 +69,7 @@ var REPO = (function() {
     t["creator"].forEach(function(c) {
       if(db.cards.some(function(a) { return a.id === c["artist_id"] })) return;
 
-      var a = new models.Artist(c);
+      var a = new models.Artist(c, work);
       a.works.push(work);
       db.cards.push(a);
     });

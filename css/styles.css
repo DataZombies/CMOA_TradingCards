@@ -1,111 +1,178 @@
+/* CMOA CSS
+ *
+ * crimson: #C7362A
+ * */
+
+
+/* Reset */
 * {
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	box-sizing: border-box;
-	font-family: sans-serif;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  font-family: sans-serif;
 }
 
 body, html {
-	height: 100%;
+  height: 100%;
 }
 
 body, ul, li, h1, h2, h3, img, p {
-	padding: 0;
-	margin: 0;
-	border: 0;
-	list-style: none;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  list-style: none;
+}
+
+
+/* Layout */
+
+html { font-size: 62.5%;  }
+
+* {
+  font-family: 'Open Sans Condensed', sans-serif;
 }
 
 body {
-	/* On modern browsers, prevent the whole page to bounce */
-	overflow: hidden;
-	background-color: #007c0b/*#ccc*/;
-/*#00d842*/;
-	font-size: 12px;
+  background-color: #D9CB9E;
+  border-top: 5px solid #444;
+  font-size: 12px;
+  overflow: hidden;
 }
 
-#wrapper {
-	position: absolute;
-	z-index: 1;
-	width: 100%;
-	max-width: 400px; /*568px;*/
-	height: 100%;
-	max-height: 500px; /*568px;*/
-	top: 100px; /*0;*/
-	left: 50px; /*0;*/
-	bottom: 0;
-	right: 0;
-	overflow: hidden;
+.container {
+  margin: 0 auto;
+  width: 1200px;
 
-	/* Prevent native touch events on Windows */
-	-ms-touch-action: none;
+  /* Prevent native touch events on Windows */
+  -ms-touch-action: none;
 
-	/* Prevent the callout on tap-hold and text selection */
-	-webkit-touch-callout: none;
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
+  /* Prevent the callout on tap-hold and text selection */
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 
-	/* Prevent elements to be highlighted on tap */
-	-webkit-tap-highlight-color: rgba(0,0,0,0);
+  /* Prevent elements to be highlighted on tap */
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
 
-	/* Prevent text resize on orientation change, useful for web-apps */
-	-webkit-text-size-adjust: none;
-	-moz-text-size-adjust: none;
-	-ms-text-size-adjust: none;
-	-o-text-size-adjust: none;
-	text-size-adjust: none;
+  /* Prevent text resize on orientation change, useful for web-apps */
+  -webkit-text-size-adjust: none;
+  -moz-text-size-adjust: none;
+  -ms-text-size-adjust: none;
+  -o-text-size-adjust: none;
+  text-size-adjust: none;
+}
+
+.main-header {
+  position: absolute;
+  left: 15px; top: 15px;
+}
+
+.main-header__name {
+  display: inline-block;
+  font-size: 2.0rem;
+  font-weight: bold;
+  margin-right: 30px;
+  text-shadow: 0 -1px 0 rgba(255,255,255,0.5);
+  text-transform: uppercase;
+}
+
+.main-header__quote {
+  font-size: 2.0rem;
+}
+
+.main-content {
+  margin-top: 100px;
+}
+
+.main-content > div {
+  float: left;
+  padding: 15px;
+  width: 33%;
+}
+
+.player-area {
+  background: #fff;
+  border: 5px solid #DC3522;
+}
+
+.player-area h2 {
+  margin-bottom: 20px;
+}
+
+.player-area__score {
+  float: right;
+}
+
+.player-area__btn {
+  background: #DC3522;
+  border-bottom: 2px solid #C31C09;
+  color: #fff;
+  display: block;
+  font-size: 1.8rem;
+  padding: 12px;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  width: 100%;
+}
+
+.player-area__btn:hover {
+  background: #C31C09;
+}
+
+.deck-wrapper {
+  height: 420px;
+  margin-bottom: 15px;
+  overflow: hidden;
+  width: 100%;
 }
 
 #deck {
-	position: relative;
-	z-index: 10;
-	width: 100%;
-	height: 100%;
-	background: #007c0b/*#ccc*/;
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  height: 100%;
 }
 
 .card {
-	position: absolute;
-	width: 100%;
-	height: 100%;
-	padding: 10px;
-	z-index: 10;
+  box-shadow: -2px 2px 0 rgba(0,0,0,0.5);
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
 
-	/* Put the scroller into the HW Compositing layer right from the start */
-	-webkit-transform: translateZ(0);
-	-moz-transform: translateZ(0);
-	-ms-transform: translateZ(0);
-	-o-transform: translateZ(0);
-	transform: translateZ(0);
+  /* Put the scroller into the HW Compositing layer right from the start */
+  -webkit-transform: translateZ(0);
+  -moz-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  -o-transform: translateZ(0);
+  transform: translateZ(0);
 }
 
 .card div {
-	position: relative;
-	width: 100%;
-	height: 100%;
-	border: 2px solid #aaa;
-	padding: 20px;
-	border-radius: 10px;
-	background: #fff;
-	background-position: 50% 50%;
-	background-size: 95% 95%;
-	background-repeat: no-repeat;
-	font-size: 1.6em;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border: 5px solid #374140;
+  padding: 15px;
+  background: #eee;
+  background-position: 50% 50%;
+  background-size: 95% 95%;
+  background-repeat: no-repeat;
+  font-size: 1.6rem;
 }
 
 .card img {
-	float: left;
-	margin: 0 10px 10px 0;
-	border: 1px solid #000;
+  border: 2px solid #374140;
+  height: 200px;
+  margin: 0 0 10px;
+  width: 100%;
 }
 
 .card h3 {
-	background-color: #aaa;
-	padding: 8px;
-	margin-bottom: 10px;
-	text-align: center;
+  margin: 0 0 10px;
 }
 
 #player {
@@ -135,60 +202,60 @@ body {
   font-weight: bold;
   font-size: x-large;
   position: absolute;
-	left: 60px;
+  left: 60px;
   top: 600px;
   height: 30px;
   align-content: center;
-	width: 380px;
-	border-radius: 10px;
-	background-color: white;
+  width: 380px;
+  border-radius: 10px;
+  background-color: white;
 }
 
 #categories {
-	position: absolute;
-	z-index: 1;
-	top: 65px;
-/* 	bottom: 48px; */
-	left: 60px;
-	width: 380px;
+  position: absolute;
+  z-index: 1;
+  top: 65px;
+/*  bottom: 48px; */
+  left: 60px;
+  width: 380px;
   height: 35px;
-	background-color: white;
-	overflow: hidden;
-	border: 2px solid #aaa;
-	border-radius: 10px;
+  background-color: white;
+  overflow: hidden;
+  border: 2px solid #aaa;
+  border-radius: 10px;
 }
 
 #scroller {
-	position: absolute;
-	z-index: 1;
-	-webkit-tap-highlight-color: rgba(0,0,0,0);
-	width: 500px;
-	height: 100px;
-	background-color: white;
-	-webkit-transform: translateZ(0);
-	-moz-transform: translateZ(0);
-	-ms-transform: translateZ(0);
-	-o-transform: translateZ(0);
-	transform: translateZ(0);
-	-webkit-touch-callout: none;
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
-	-webkit-text-size-adjust: none;
-	-moz-text-size-adjust: none;
-	-ms-text-size-adjust: none;
-	-o-text-size-adjust: none;
-	text-size-adjust: none;
+  position: absolute;
+  z-index: 1;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  width: 500px;
+  height: 100px;
+  background-color: white;
+  -webkit-transform: translateZ(0);
+  -moz-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  -o-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-text-size-adjust: none;
+  -moz-text-size-adjust: none;
+  -ms-text-size-adjust: none;
+  -o-text-size-adjust: none;
+  text-size-adjust: none;
 }
 
 #scroller ul {
-	list-style: none;
-	padding: 0;
-	margin: 0;
-	width: 100%;
-	height: 100%;
-	text-align: center;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  text-align: center;
 }
 #scroller ul div {
   margin: 7px 0 0 0;
@@ -196,18 +263,19 @@ body {
 
 #scroller li {
   vertical-align: middle;
-	display: block;
-	float: left;
-	width: 100px;
-	height: 100%;
-	border-right: 1px solid #ccc;
-	background-color: #fafafa;
-	font-size: 14px;
+  display: block;
+  float: left;
+  width: 100px;
+  height: 100%;
+  border-right: 1px solid #ccc;
+  background-color: #fafafa;
+  font-size: 14px;
 }
 
 #scroller li:first-child {
-	border-left: 1px solid #ccc;
+  border-left: 1px solid #ccc;
 }
 
 #scroller li:last-child {
 }
+
