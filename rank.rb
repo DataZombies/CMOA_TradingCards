@@ -46,24 +46,30 @@ ranks = d["things"].map{|t|
   ans = tempVal * diff / depts[dept].count
 }.sort
 
-minRank = Float::INFINITY
-maxRank = Float::INFINITY * -1
-total = 0
+puts "Normalizing..."
 
-ranks.each{|t|
-  if t < minRank
-    minRank = t
-  end
-
-  if t > maxRank
-    maxRank = t
-  end
-
-  total += t
+normalizedRanks = ranks.map.with_index{|v,k|
+  ((((k - 0) * (1000 - 1)) / (ranks.count - 0)) + 1).round(1)
 }
 
-avgRank = total/ranks.count
-puts "Average Rank: " + avgRank.to_s
+nMinRank = Float::INFINITY
+nMaxRank = Float::INFINITY * -1
+nTotal = 0
 
-puts "minRank: " + minRank.to_s
-puts "maxRank: " + maxRank.to_s
+normalizedRanks.each{|r|
+  if r < nMinRank
+    nMinRank = r
+  end
+
+  if r > nMaxRank
+    nMaxRank = r
+  end
+
+  nTotal += r
+}
+
+nAvgRank = nTotal/normalizedRanks.count
+puts "Normalized average Rank: " + nAvgRank.to_s
+
+puts "Normalized minRank: " + nMinRank.to_s
+puts "Normalized maxRank: " + nMaxRank.to_s
