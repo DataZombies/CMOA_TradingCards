@@ -88,6 +88,12 @@ var APP = (function() {
       return a;
     }
 
+    function heal(a, health) {
+      a.hp += health;
+      if(a.hp > a.maxHP) a.hp = a.maxHP;
+      return a;
+    }
+
     function restartGame() {
       playerCards = REPO.drawCards(cardsInDeck);
       computerCards = REPO.drawCards(cardsInDeck);
@@ -173,44 +179,65 @@ var APP = (function() {
       self.playerWork(w);
 
       function playerTurn() {
-         // Deal damage to the computer
-        var affectedCCard = dealDamage(self.computerCard(), w.damage);
-        self.computerCard(affectedCCard);
-        addToLedger({
-          content: 'You played an artwork (' + w.title + ') and ' +
-                   'delivered ' + w.damage + ' damage to your opponent!'
-        });
-
-        // If the computer card's HP is 0, add constant (20) to
-        // player's score and move to next round
-        if(affectedCCard.hp === 0) {
-          self.playerScore(self.playerScore() + 20);
+        if(w.castType === 'damaging') {
+           // Deal damage to the computer
+          var affectedCCard = dealDamage(self.computerCard(), w.castMagnitude);
+          self.computerCard(affectedCCard);
           addToLedger({
-            content: 'You won round ' + self.round() + '!'
+            content: 'You played an artwork (' + w.title + ') and ' +
+                     'delivered ' + w.castMagnitude + ' damage to your opponent!'
           });
-          return nextRound();
+
+          // If the computer card's HP is 0, add constant (20) to
+          // player's score and move to next round
+          if(affectedCCard.hp === 0) {
+            self.playerScore(self.playerScore() + 20);
+            addToLedger({
+              content: 'You won round ' + self.round() + '!'
+            });
+            return nextRound();
+          }
+
+        // Heal!
+        } else {
+          var affectedPCard = heal(self.playerCard(), w.castMagnitude);
+          self.playerCard(affectedPCard);
+          addToLedger({
+            content: 'You played an artwork (' + w.title + ') and ' +
+                     'healed yourself by ' + w.castMagnitude + ' HP!'
+          });
         }
       }
 
       function computerTurn() {
-         // Computer deals damage to player
         var cWorkIndex = Math.floor(Math.random() * self.computerCard().works.length);
         var cWork = self.computerCard().works[cWorkIndex];
-        var affectedPCard = dealDamage(self.playerCard(), cWork.damage);
-        self.playerCard(affectedPCard);
-        addToLedger({
-          content: 'The computer played an artwork (' + cWork.title + ') and ' +
-                   'delivered ' + cWork.damage + ' damage to you!'
-        });
 
-        // If the player card's HP is 0, add constant (20) to
-        // computer's score and move to next round
-        if(affectedPCard.hp === 0) {
-          self.computerScore(self.computerScore() + 20);
+        if(cWork.castType === 'damaging') {
+          // Computer deals damage to player
+          var affectedPCard = dealDamage(self.playerCard(), cWork.castMagnitude);
+          self.playerCard(affectedPCard);
           addToLedger({
-            content: 'The computer won round ' + self.round() + '!'
+            content: 'The computer played an artwork (' + cWork.title + ') and ' +
+                     'delivered ' + cWork.castMagnitude + ' damage to you!'
           });
-          return nextRound();
+
+          // If the player card's HP is 0, add constant (20) to
+          // computer's score and move to next round
+          if(affectedPCard.hp === 0) {
+            self.computerScore(self.computerScore() + 20);
+            addToLedger({
+              content: 'The computer won round ' + self.round() + '!'
+            });
+            return nextRound();
+          }
+        // Heal!
+        } else {
+          var affectedCCard = heal(self.computerCard(), cWork.castMagnitude);
+          self.computerCard(affectedCCard);
+          addToLedger({
+            content: 'The computer played an artwork (' + cWork.title + ') and ' +
+                     'healed itself by ' + cWork.castMagnitude + ' HP!'
         }
       }
 

@@ -28,6 +28,7 @@ var REPO = (function() {
 
     // TODO: Replace with custom HP algorithm
     this.hp = Math.ceil(100 * Math.random()) + 50;
+    this.maxHP = this.hp;
 
     this.fullName = a["full_name"];
     this.nationality = a["nationality"];
@@ -51,7 +52,8 @@ var REPO = (function() {
     this.id = w["id"];
 
     // TODO: Replace with custom damage algorithm
-    this.damage = Math.ceil(100 * Math.random()) + 50;
+    this.castMagnitude = Math.ceil(100 * Math.random()) + 50;
+    this.castType = "damaging";
 
     this.title = w["title"];
     this.dateCreated = prettyDate(new Date(w["creation_date_earliest"]));
@@ -87,6 +89,10 @@ var REPO = (function() {
       });
 
       if(index) {
+        if(db.cards[index].works.length === 1) {
+          work.castType = "healing";
+        }
+
         db.cards[index].works.push(work);
       } else {
         artist = new models.Artist(c, work);
