@@ -65,7 +65,7 @@ var REPO = (function() {
 
     var images = w["images"] && w["images"][0];
     this.imageUrl = images && images["image_url"] && images["image_url"][0];
-    this.imageUrl = this.imageUrl || "/img/default.jpg";
+    this.imageUrl = this.imageUrl || "img/default.jpg";
   };
 
   // Seed DB with data
