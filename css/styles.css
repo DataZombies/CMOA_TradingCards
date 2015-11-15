@@ -30,13 +30,12 @@ html { font-size: 62.5%;  }
 
 * {
   font-family: 'Open Sans Condensed', sans-serif;
+  font-size: 1.6rem;
 }
 
 body {
   background-color: #D9CB9E;
   border-top: 5px solid #444;
-  font-size: 12px;
-  overflow: hidden;
 }
 
 .container {
@@ -64,6 +63,52 @@ body {
   text-size-adjust: none;
 }
 
+#game {
+  display: none;
+}
+
+/* Loading */
+/* --------------------------*/
+.loading {
+  animation: spin 2s infinite linear;
+  background: #fff;
+  border: 10px solid transparent;
+  border-bottom-color: #374140;
+  border-top-color: #374140;
+  border-radius: 50%;
+  box-shadow: 0 0 0 5px #DC3522;
+  height: 200px;
+  margin: 0 auto;
+  margin-top: 250px;
+  position: relative;
+  width: 200px;
+}
+
+.loading__inner {
+  animation: reverse-spin 2s infinite linear;
+  display: table-cell;
+  height: 180px;
+  position: relative;
+  text-align: center;
+  vertical-align: middle;
+  width: 180px;
+}
+
+.loading__inner span {
+  font-size: 2.0rem;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes reverse-spin {
+  0% { transform: rotate(360deg); }
+  100% { transform: rotate(0deg); }
+}
+/* --------------------------*/
+
 .main-header {
   position: absolute;
   left: 15px; top: 15px;
@@ -88,13 +133,14 @@ body {
 
 .main-content > div {
   float: left;
-  padding: 15px;
   width: 33%;
 }
 
 .player-area {
   background: #fff;
   border: 5px solid #DC3522;
+  min-height: 570px;
+  padding: 15px;
 }
 
 .player-area h2 {
@@ -103,6 +149,16 @@ body {
 
 .player-area__score {
   float: right;
+}
+
+.player-area__score__total {
+  background: #333;
+  border-radius: 3px;
+  color: #fff;
+  font-size: 1.4rem;
+  font-weight: normal;
+  display: inline-block;
+  padding: 0 10px;
 }
 
 .player-area__btn {
@@ -120,6 +176,62 @@ body {
 
 .player-area__btn:hover {
   background: #C31C09;
+}
+
+.artist-works {
+  margin-top: 15px;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.artist-work {
+  border: 3px solid #374140;
+  margin-bottom: 15px;
+  width: 100%;
+}
+
+.artist-work__header {
+  display: table;
+}
+
+.artist-work:hover .artist-work__info {
+  display: block;
+}
+
+.artist-work img {
+  border-right: 3px solid #374140;
+  display: table-cell;
+  height: 100px;
+  width: 100px;
+}
+
+.artist-work__title {
+  display: table-cell;
+  font-size: 1.6rem;
+  padding: 0 10px;
+  vertical-align: middle;
+}
+
+.artist-work__info {
+  border-top: 3px solid #374140;
+  display: none;
+  width: 100%;
+}
+
+.artist-work__info table {
+  border-spacing: 0;
+  font-size: 1.6rem;
+  width: 100%;
+}
+
+.artist-work__info table td {
+  border-bottom: 3px solid #374140;
+  border-right: 3px solid #374140;
+  padding: 5px;
+}
+
+.artist-work__info tr td:last-child {
+  border-right: none;
 }
 
 .deck-wrapper {
@@ -175,41 +287,75 @@ body {
   margin: 0 0 10px;
 }
 
-#player {
-  width: 50%;
+.card__title {
+  display: inline-block;
+  width: 70%;
 }
 
-#player .header {
-  position: absolute;
-  left: 55px;
-  top: 10px;
+.card__hpc {
+  float: right;
 }
 
-#player h1 {
-  color: white;
+/* Shared Area */
+/* --------------------------*/
+.shared-area {
+  padding: 0 20px;
 }
 
-#player h2 {
-  color: white;
+.shared-area__header {
+  font-size: 2.2rem;
+  margin-bottom: 25px;
+  text-align: center;
+  text-shadow: 0 -1px 0 rgba(255,255,255,0.3);
 }
 
-#playerHeader {
-  align-content: center;
-  width: 100%;
+.shared-area__header span {
+  background-color: #DC3522;
+  border: 1px solid #374140;
+  border-radius: 3px;
+  color: #fff;
+  font-size: 2.1rem;
+  font-weight: normal;
+  padding: 0 11px;
 }
 
-#player #useThisCard {
-  font-weight: bold;
-  font-size: x-large;
-  position: absolute;
-  left: 60px;
-  top: 600px;
-  height: 30px;
-  align-content: center;
-  width: 380px;
-  border-radius: 10px;
-  background-color: white;
+.ledger {
+
 }
+
+.ledger__header {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.ledger__header h3 {
+  font-size: 2.0rem;
+  text-shadow: 0 -1px 0 rgba(255,255,255,0.4);
+}
+
+.ledger__body {
+  background: #374140;
+  max-height: 445px;
+  overflow: auto;
+  padding: 5px;
+}
+
+.ledger__body::-webkit-scrollbar {
+  width: 0 !important;
+}
+
+.ledger-entry {
+  background: #fff;
+  border: 1px solid #222;
+  margin-bottom: 5px;
+  padding: 15px;
+}
+
+.ledger-entry:last-child {
+  margin-bottom: 0;
+}
+/* --------------------------*/
+
 
 #categories {
   position: absolute;

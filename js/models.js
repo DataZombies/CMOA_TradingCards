@@ -25,6 +25,10 @@ var REPO = (function() {
 
   models.Artist = function(a, w) {
     this.id = a["artist_id"];
+
+    // TODO: Replace with custom HP algorithm
+    this.hp = Math.ceil(100 * Math.random()) + 50;
+
     this.fullName = a["full_name"];
     this.nationality = a["nationality"];
     this.birthDate = prettyDate(new Date(a["birth_date"]));
@@ -45,9 +49,13 @@ var REPO = (function() {
 
    models.Work = function(w) {
     this.id = w["id"];
+
+    // TODO: Replace with custom damage algorithm
+    this.damage = Math.ceil(100 * Math.random()) + 50;
+
     this.title = w["title"];
-    this.dateCreated = w["creation_date_earliest"];
-    this.dateAcquired = w["date_acquired"];
+    this.dateCreated = prettyDate(new Date(w["creation_date_earliest"]));
+    this.dateAcquired = prettyDate(new Date(w["date_acquired"]));
     this.medium = w["medium"];
     this.creditLine = w["credit_line"];
     this.itemWidth = w["item_width"];
@@ -67,11 +75,21 @@ var REPO = (function() {
     var work = new models.Work(t);
 
     t["creator"].forEach(function(c) {
-      if(db.cards.some(function(a) { return a.id === c["artist_id"] })) return;
+      var artist, index;
 
-      var a = new models.Artist(c, work);
-      a.works.push(work);
-      db.cards.push(a);
+      db.cards.forEach(function(a, i) {
+        if(a.id === c["artist_id"]) {
+          index = i;
+        }
+      });
+
+      if(index) {
+        db.cards[index].works.push(work);
+      } else {
+        artist = new models.Artist(c, work);
+        artist.works.push(work);
+        db.cards.push(artist);
+      }
     });
   });
 

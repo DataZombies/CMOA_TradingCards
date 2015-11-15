@@ -29,53 +29,154 @@
         - <span>Sun Tzu, <em>The Art of War</em></span>
       </span>
     </header>
-    <div class="main-content">
+    <div id="loading" class="loading">
+      <div class="loading__inner">
+        <span>Loading Game...</span>
+      </div>
+    </div>
+    <div class="main-content" id="game">
       <div class="player-area">
         <h2>
           You
           <span class="player-area__score">
+            <span data-bind="visible: playerCard">
+              HP:
+              <span class="player-area__score__total" data-bind="text: playerCard().hp"></span>
+            </span>
             Score:
-            <span data-bind="text: playerScore"></span>
+            <span class="player-area__score__total" data-bind="text: playerScore"></span>
           </span>
         </h2>
-        <div class="deck-wrapper" id="player-deck">
-          <ul id="deck">
-            <li class="card">
-              <div>
-                <h3>Title</h3>
-                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVQI12P4//8/AAX+Av7czFnnAAAAAElFTkSuQmCC" alt="thumb" width="125" height="125">
-                <p>Text</p>
-              </div>
-            </li>
-            <li class="card">
-              <div>
-                <h3>Title</h3>
-                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVQI12P4//8/AAX+Av7czFnnAAAAAElFTkSuQmCC" alt="thumb" width="125" height="125">
-                <p>Text</p>
-              </div>
-            </li>
-            <li class="card">
-              <div>
-                <h3>Title</h3>
-                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVQI12P4//8/AAX+Av7czFnnAAAAAElFTkSuQmCC" alt="thumb" width="125" height="125">
-                <p>Text</p>
-              </div>
-            </li>
-          </ul>
+        <div data-bind="visible: !playerCard()">
+          <div class="deck-wrapper" id="player-deck">
+            <ul id="deck">
+              <li class="card">
+                <div>
+                  <h3>
+                    <span class="card__title">Title</span>
+                    <span class="card__hpc">
+                      <span class="card__hp">100</span> HP
+                    </span>
+                  </h3>
+                  <img src="" alt="thumb" width="125" height="125">
+                  <p>Text</p>
+                </div>
+              </li>
+              <li class="card">
+                <div>
+                  <h3>
+                    <span class="card__title">Title</span>
+                    <span class="card__hpc">
+                      <span class="card__hp">100</span> HP
+                    </span>
+                  </h3>
+                  <img src="" alt="thumb" width="125" height="125">
+                  <p>Text</p>
+                </div>
+              </li>
+              <li class="card">
+                <div>
+                  <h3>
+                    <span class="card__title">Title</span>
+                    <span class="card__hpc">
+                      <span class="card__hp">100</span> HP
+                    </span>
+                  </h3>
+                  <img src="" alt="thumb" width="125" height="125">
+                  <p>Text</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <a class="player-area__btn" data-bind="click: chooseCard" href="javascript:void(0)">Choose Card</a>
         </div>
-        <a class="player-area__btn" href="javascript:void(0)">Choose Card</a>
+        <div data-bind="visible: playerCard()">
+          <div>
+            <p>
+              The computer has selected its card! The stage has been set
+              for a battle of non-epic proportions! Select your artwork
+              to deal "damage" to the opponent! Watch that HP; first one
+              to zero loses the round!
+            </p>
+          </div>
+          <div class="artist-works" data-bind="foreach: playerCard().works">
+            <div class="artist-work">
+              <div class="artist-work__header">
+                <img data-bind="attr:{src: imageUrl}" />
+                <span class="artist-work__title" data-bind="text: title"></span>
+              </div>
+              <div class="artist-work__info">
+                <table>
+                  <tbody>
+                    <tr>
+                      <td>Date Created</td>
+                      <td data-bind="text: dateCreated"></td>
+                    </tr>
+                    <tr>
+                      <td>Date Acquired</td>
+                      <td data-bind="text: dateAcquired"></td>
+                    </tr>
+                  </tbody>
+                </table>
+                <a class="player-area__btn"
+                  href="javascript:void(0)" data-bind="click: $parent.chooseWork.bind($data)">Use This!</a>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="shared-area">
-        <h2>Something</h2>
+        <h2 class="shared-area__header">
+          Round <span data-bind="text: round"></span> of <span data-bind="text: rounds"></span>
+        </h2>
+        <div class="ledger">
+          <div class="ledger__header">
+            <h3>The Ledger</h3>
+            <p>And so history was (re)written...</p>
+          </div>
+          <div class="ledger__body" data-bind="foreach: ledger">
+            <div class="ledger-entry">
+              <img data-bind="visible: imageUrl, attr:{src: imageUrl}" />
+              <p data-bind="text: content"></p>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="player-area">
-
+        <h2>
+          Computer
+          <span class="player-area__score">
+            Score:
+            <span class="player-area__score__total" data-bind="text: computerScore"></span>
+          </span>
+        </h2>
+        <div data-bind="visible: !computerCard()">
+          <p>
+            The computer will select its card once you have selected your card...
+            Fear not; its tastes in art have much to be desired.
+          </p>
+        </div>
+        <div data-bind="visible: computerCard()">
+          <div class="deck-wrapper" id="player-deck">
+            <ul id="deck">
+              <li class="card">
+                <div>
+                  <h3>
+                    <span class="card__title" data-bind="text: computerCard().fullName"></span>
+                    <span class="card__hpc">
+                      <span class="card__hp" data-bind="text: computerCard().hp"></span> HP
+                    </span>
+                  </h3>
+                  <img alt="thumb" width="125" height="125" data-bind="attr:{src: computerCard().imageUrl}">
+                  <p data-bind="text: computerCard().description"></p>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
-    <!--<div class="header">-->
-      <!--<h1>Player 1</h1>-->
-      <!--<h2>Score: <span>-10</span></h2>-->
-    <!--</div>-->
+    <!-- TODO: Incorporate categories -->
     <!--<div id="categories">-->
       <!--<div id="scroller">-->
         <!--<ul>-->
@@ -92,35 +193,6 @@
         <!--</ul>-->
       <!--</div>-->
     <!--</div>-->
-    <!--<div class="wrapper">-->
-      <!--<ul id="deck">-->
-        <!--<li class="card">-->
-          <!--<div>-->
-            <!--<h3>Title</h3>-->
-            <!--<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVQI12P4//8/AAX+Av7czFnnAAAAAElFTkSuQmCC" alt="thumb" width="125" height="125">-->
-            <!--<p>Text</p>-->
-          <!--</div>-->
-        <!--</li>-->
-        <!--<li class="card">-->
-          <!--<div>-->
-            <!--<h3>Title</h3>-->
-            <!--<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVQI12P4//8/AAX+Av7czFnnAAAAAElFTkSuQmCC" alt="thumb" width="125" height="125">-->
-            <!--<p>Text</p>-->
-          <!--</div>-->
-        <!--</li>-->
-        <!--<li class="card">-->
-          <!--<div>-->
-            <!--<h3>Title</h3>-->
-            <!--<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVQI12P4//8/AAX+Av7czFnnAAAAAElFTkSuQmCC" alt="thumb" width="125" height="125">-->
-            <!--<p>Text</p>-->
-          <!--</div>-->
-        <!--</li>-->
-      <!--</ul>-->
-    <!--</div>-->
-    <!--<div>-->
-      <!--<button id="useThisCard">Use this card</button>-->
-      <!--</div>-->
-  <!--</div>-->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.3.0/knockout-min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
   <script src="/js/iscroll.js"></script>
